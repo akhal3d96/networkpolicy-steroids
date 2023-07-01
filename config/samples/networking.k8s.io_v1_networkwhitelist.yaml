@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io.ahmed.com/v1
+kind: NetworkWhitelist
+metadata:
+  labels:
+    app.kubernetes.io/name: networkwhitelist
+    app.kubernetes.io/instance: networkwhitelist-sample
+    app.kubernetes.io/part-of: networkpolicy
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: networkpolicy
+  name: networkwhitelist-sample
+spec:
+  domains:
+    - google.com
+    - facebook.com

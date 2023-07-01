@@ -1,0 +1,45 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - networking.k8s.io.ahmed.com
+  resources:
+  - networkwhitelists
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - networking.k8s.io.ahmed.com
+  resources:
+  - networkwhitelists/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - networking.k8s.io.ahmed.com
+  resources:
+  - networkwhitelists/status
+  verbs:
+  - get
+  - patch
+  - update

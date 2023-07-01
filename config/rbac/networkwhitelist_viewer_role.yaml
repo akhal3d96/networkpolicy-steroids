@@ -1,0 +1,27 @@
+# permissions for end users to view networkwhitelists.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: networkwhitelist-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: networkpolicy
+    app.kubernetes.io/part-of: networkpolicy
+    app.kubernetes.io/managed-by: kustomize
+  name: networkwhitelist-viewer-role
+rules:
+- apiGroups:
+  - networking.k8s.io.ahmed.com
+  resources:
+  - networkwhitelists
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - networking.k8s.io.ahmed.com
+  resources:
+  - networkwhitelists/status
+  verbs:
+  - get

@@ -1,0 +1,31 @@
+# permissions for end users to edit networkwhitelists.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: networkwhitelist-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: networkpolicy
+    app.kubernetes.io/part-of: networkpolicy
+    app.kubernetes.io/managed-by: kustomize
+  name: networkwhitelist-editor-role
+rules:
+- apiGroups:
+  - networking.k8s.io.ahmed.com
+  resources:
+  - networkwhitelists
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - networking.k8s.io.ahmed.com
+  resources:
+  - networkwhitelists/status
+  verbs:
+  - get
