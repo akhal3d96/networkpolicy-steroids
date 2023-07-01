@@ -1,8 +1,41 @@
-# networkpolicy
-// TODO(user): Add simple overview of use/purpose
+# Network Policy
+A Kubernetes network policy that let's you define the policies by specifying domain names instead of CIDR's
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+Instead of:
+
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: sample-network-policy
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 157.240.247.35/32
+    - from:
+        - ipBlock:
+            cidr: 216.58.208.110/32
+```
+
+You define this:
+
+```yaml
+apiVersion: networking.k8s.io.ahmed.com/v1
+kind: NetworkWhitelist
+metadata:
+  labels:
+  name: networkwhitelist-sample
+spec:
+  domains:
+    - google.com
+    - facebook.com
+```
 
 ## Getting Started
 You’ll need a Kubernetes cluster to run against. You can use [KIND](https://sigs.k8s.io/kind) to get a local cluster for testing, or run against a remote cluster.
@@ -40,9 +73,6 @@ UnDeploy the controller from the cluster:
 ```sh
 make undeploy
 ```
-
-## Contributing
-// TODO(user): Add detailed information on how you would like others to contribute to this project
 
 ### How it works
 This project aims to follow the Kubernetes [Operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/).
